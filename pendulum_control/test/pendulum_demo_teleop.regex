@@ -1,1 +1,3 @@
+Initial major pagefaults: \d+
+Initial minor pagefaults: \d+
 Pendulum set to: \d+\.\d+

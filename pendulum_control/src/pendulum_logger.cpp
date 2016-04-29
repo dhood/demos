@@ -52,7 +52,7 @@ int main(int argc, char * argv[])
       printf("Max latency: %lu ns\n", msg->max_latency);
 
       printf("Minor pagefaults during execution: %lu\n", msg->minor_pagefaults);
-      printf("Major pagefaults during execution: %lu\n\n", msg->major_pagefaults);
+      printf("Major pagefaults during execution: %lu\n", msg->major_pagefaults);
 
       std::ofstream fstream;
       struct timespec timestamp;

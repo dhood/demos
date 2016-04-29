@@ -1,3 +1,4 @@
+Logger node initialized.
 Commanded motor angle: \d+.\d+
 Actual motor angle: \d+.\d+
 Current latency: \d+ ns

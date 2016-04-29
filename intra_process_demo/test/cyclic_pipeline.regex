@@ -1,4 +1,7 @@
-Incrementing and sending with value: (\d+), and address: (0x([A-Z]|\d)+)
+Published first message with value:  (\d+), and address: (0x(?:[A-Z]|\d)+)
 Received message with value:         \1, and address: \2
   sleeping for 1 second...
   done.
+Incrementing and sending with value: (\d+), and address: \2
+Received message with value:         \3, and address: \2
+  sleeping for 1 second...
