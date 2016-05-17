@@ -50,6 +50,34 @@ call_for_each_rmw_implementation(targets GENERATE_DEFAULT)
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
+
+  set(executables_to_test
+    cam2image
+    showimage)
+
+  macro(tests)
+    foreach(executable ${executables_to_test})
+      set(IMAGE_TOOLS_EXECUTABLE "$<TARGET_FILE:${executable}${target_suffix}>")
+      configure_file(
+        test/test_executables_run.py.in
+        test_linking_${executable}${target_suffix}.py.configured
+        @ONLY
+      )
+
+      file(GENERATE
+        OUTPUT "test_linking_${executable}${target_suffix}_$<CONFIGURATION>.py"
+        INPUT "${CMAKE_CURRENT_BINARY_DIR}/test_linking_${executable}${target_suffix}.py.configured"
+      )
+
+      ament_add_nose_test(test_linking_${executable}${target_suffix}
+        "${CMAKE_CURRENT_BINARY_DIR}/test_linking_${executable}${target_suffix}_$<CONFIGURATION>.py"
+        TIMEOUT 30)
+      set_tests_properties(test_linking_${executable}${target_suffix}
+        PROPERTIES ENVIRONMENT RCL_ASSERT_RMW_ID_MATCHES=${rmw_implementation})
+    endforeach()
+  endmacro()
+
+  call_for_each_rmw_implementation(tests)
 endif()
 
 ament_package()
