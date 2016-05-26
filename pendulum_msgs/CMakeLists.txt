@@ -15,6 +15,7 @@ rosidl_generate_interfaces(pendulum_msgs
   "msg/JointCommand.msg"
   "msg/RttestResults.msg"
   DEPENDENCIES builtin_interfaces
+  LINT_INTERFACES
 )
 
 ament_package()
