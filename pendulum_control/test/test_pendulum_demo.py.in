@@ -26,7 +26,8 @@ def test_executable():
     pendulum_logger_output_file = '@RCLCPP_DEMO_PENDULUM_LOGGER_EXPECTED_OUTPUT@'
     pendulum_logger_name = 'pendulum_logger'
     pendulum_logger_handler = create_handler(
-        pendulum_logger_name, launch_descriptor, pendulum_logger_output_file)
+        pendulum_logger_name, launch_descriptor, pendulum_logger_output_file,
+        filtered_rmw_implementation=rmw_implementation)
     assert pendulum_logger_handler, \
         'Cannot find appropriate handler for %s' % pendulum_logger_output_file
     output_handlers.append(pendulum_logger_handler)

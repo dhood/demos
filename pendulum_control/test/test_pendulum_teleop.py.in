@@ -27,7 +27,8 @@ def test_executable():
     pendulum_demo_output_file = '@RCLCPP_DEMO_PENDULUM_DEMO_TELEOP_EXPECTED_OUTPUT@'
     pendulum_demo_name = 'pendulum_demo'
     pendulum_demo_handler = create_handler(
-        pendulum_demo_name, launch_descriptor, pendulum_demo_output_file)
+        pendulum_demo_name, launch_descriptor, pendulum_demo_output_file,
+        filtered_rmw_implementation=rmw_implementation)
     assert pendulum_demo_handler, \
         'Cannot find appropriate handler for %s' % pendulum_demo_output_file
     output_handlers.append(pendulum_demo_handler)

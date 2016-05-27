@@ -19,11 +19,13 @@ def test_executable():
 
     launch_descriptor = LaunchDescriptor()
 
+    rmw_implementation = '@rmw_implementation@'
     executables = '@RCLCPP_DEMOS_EXECUTABLE@'.split(';')
     output_files = '@RCLCPP_DEMOS_EXPECTED_OUTPUT@'.split(';')
     for i, (exe, output_file) in enumerate(zip(executables, output_files)):
         name = 'test_executable_' + str(i)
-        handler = create_handler(name, launch_descriptor, output_file)
+        handler = create_handler(name, launch_descriptor, output_file,
+            filtered_rmw_implementation=rmw_implementation)
         assert handler, 'Cannot find appropriate handler for %s' % output_file
         output_handlers.append(handler)
         launch_descriptor.add_process(
